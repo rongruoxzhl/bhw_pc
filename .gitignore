@@ -1,0 +1,8 @@
+
+runtime
+upload
+backup
+install
+logs/
+
+config/config.php
