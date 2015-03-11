@@ -29,53 +29,35 @@
 			<tr><th>图片</th><th>商品名称</th><th>赠送积分</th><th>单价</th><th>优惠</th><th>数量</th><th>小计</th><th class="last">操作</th></tr>
 		</thead>
 		<tbody>
-			{foreach:items = $this->productList}
+			{foreach:items = $this->goodsList}
+			{set:$type=isset($item['spec_array'])?'product':'goods'}
+			{set:$item['id']=isset($item['spec_array'])?$item['product_id']:$item['goods_id']}
 			<tr>
-				<td><img src="{webroot:}{echo:Thumb::get($item['img'],66,66)}" width="66px" height="66px" alt="{$item['name']}" title="{$item['name']}" /></td>
+				<td><img src="{url:/pic/thumb/img/$item[img]/w/66/h/66}" width="66px" height="66px" alt="{$item['name']}" title="{$item['name']}" /></td>
 				<td class="t_l">
 					<a href="{url:/site/products/id/$item[goods_id]}" class="blue">{$item['name']}</a>
+					{if:isset($item['spec_array'])}
 					<p>
 					{set:$spec_array=Block::show_spec($item['spec_array']);}
 					{foreach:items=$spec_array item=$specValue key=$specName}
 						{$specName}：{$specValue} &nbsp&nbsp
 					{/foreach}
 					</p>
+					{/if}
 				</td>
 				<td>{$item['point']}</td>
 				<td><b>￥{$item['sell_price']}</b></td>
 				<td>减￥{$item['reduce']}</td>
 				<td>
 					<div class="num">
-						{set:unset($item['name']);$item_json = JSON::encode($item)}
-						<a class="reduce" href="javascript:void(0)" onclick='cart_reduce("product",{$item_json});'>-</a>
-						<input class="tiny" value="{$item['count']}" onblur='cartCount("product",{$item_json});' type="text" id="product_count_{$item['id']}" />
-						<a class="add" href="javascript:void(0)" onclick='cart_increase("product",{$item_json});'>+</a>
+						{set:$item_json = JSON::encode($item)}
+						<a class="reduce" href="javascript:void(0)" onclick='cart_reduce("{$type}",{$item_json});'>-</a>
+						<input class="tiny" value="{$item['count']}" onblur='cartCount("{$type}",{$item_json});' type="text" id="{$type}_count_{$item['id']}" />
+						<a class="add" href="javascript:void(0)" onclick='cart_increase("{$type}",{$item_json});'>+</a>
 					</div>
 				</td>
-				<td>￥<b class="red2" id="product_sum_{$item['id']}">{$item['sum']}</b></td>
-				<td><a href="{url:/simple/removeCart/link/cart/type/product/goods_id/$item[id]}">删除</a></td>
-			</tr>
-			{/foreach}
-
-			{foreach:items = $this->goodsList}
-			<tr>
-				<td><img src="{webroot:}{echo:Thumb::get($item['img'],66,66)}" width="66px" height="66px" alt="{$item['name']}" title="{$item['name']}" /></td>
-				<td class="t_l">
-					<a href="{url:/site/products/id/$item[id]}" class="blue">{$item['name']}</a>
-				</td>
-				<td>{$item['point']}</td>
-				<td>￥<b>{$item['sell_price']}</b></td>
-				<td>减￥{$item['reduce']}</td>
-				<td>
-					<div class="num">
-						{set:unset($item['name']);$item_json = JSON::encode($item)}
-						<a class="reduce" href="javascript:void(0)" onclick='cart_reduce("goods",{$item_json});'>-</a>
-						<input class="tiny" value="{$item['count']}" onblur='cartCount("goods",{$item_json});'  type="text" id="goods_count_{$item['id']}">
-						<a class="add" href="javascript:void(0)" onclick='cart_increase("goods",{$item_json});'>+</a>
-					</div>
-				</td>
-				<td>￥<b class="red2" id="goods_sum_{$item['id']}">{$item['sum']}</b></td>
-				<td><a href="{url:/simple/removeCart/link/cart/type/goods/goods_id/$item[id]}">删除</a></td>
+				<td>￥<b class="red2" id="{$type}_sum_{$item['id']}">{$item['sum']}</b></td>
+				<td><a href="{url:/simple/removeCart/link/cart/type/$type/goods_id/$item[id]}">删除</a></td>
 			</tr>
 			{/foreach}
 

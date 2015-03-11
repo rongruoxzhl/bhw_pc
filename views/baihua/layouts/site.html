@@ -4,7 +4,7 @@
     $siteConfig = new Config("site_config");
     $callback   = IReq::get('callback') ? urlencode(IFilter::act(IReq::get('callback'),'url')) : '';
 }
-<!DOCTYPE>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -110,7 +110,7 @@
             </div>
         </div>
     </div>
-    <div class="right-tool">
+<!--     <div class="right-tool">
         <div class="ibar">
             <ul class="ibar-center">
                 <li class="ibar-user">
@@ -128,7 +128,7 @@
                 <li class="ibar-gotop"></li>
             </ul>
         </div>
-    </div>
+    </div> -->
     {viewcontent}
     <div class="footer7">
         <div class="abody">

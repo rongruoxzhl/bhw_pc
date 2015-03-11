@@ -677,7 +677,7 @@ line-height: 35px;height:34px;background:#f5f5f5;color:#555455;border-right:1px 
 		table.cart_table tr.stats td span{margin-right:10px;color:#ffa303;font-size:12px}
 	table.cart_table tfoot td{height:86px}
 		table.cart_table td a.file,table.cart_table td a.del{margin-left:20px;padding-left:20px;background:url(../images/front/sprites_2.gif) -65px -330px no-repeat}
-		table.cart_table td a.del{ background-position:-60px -342px}
+		table.cart_table td a.del{ background-position:-60px -345px}
 	.num{position:relative;width:80px;}
 		.num a{ position:absolute;top:5px; border:1px solid #919191;display:block;width:8px;height:8px;line-height:8px;overflow:hidden;text-align:center;text-decoration:none;font-weight:bold;color:#4b63a7;font-family:"Courier New", monospace}
 		.num a.add{left:58px;line-height:8px}
